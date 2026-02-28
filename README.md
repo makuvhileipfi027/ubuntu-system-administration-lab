@@ -14,7 +14,7 @@ Checked interface status using:
 
 ip link show
 ### Screenshot
-![Network Interface](ip link.png.png)
+![Network Interface](kill-9.png.png)
 
 Action Taken
 
