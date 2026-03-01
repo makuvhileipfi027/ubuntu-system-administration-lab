@@ -5,27 +5,81 @@ This lab demonstrates my hands-on experience administering and troubleshooting U
 
 ✅ 1. Network Interface Connectivity Issue
 Problem
+🔹 Step 1: Identified Network Interface Status
+Command Used:
+ip link
+Observation:
 
-Network interface was DOWN and system had no connectivity.
+The network interface enp0s3 was in DOWN state.
 
-Diagnosis
+This indicated that the network adapter was not active, which explains why the system could not access external networks.
 
-Checked interface status using:
 
+![Interface Down](ip-link.png)
+
+
+
+🔹 Step 2: Tested Internet Connectivity
+Command Used:
+ping -c 4 google.com
+Observation:
+
+The system returned:
+
+Temporary failure in name resolution
+
+This confirmed that the system could not resolve domain names due to the inactive network interface.
+
+Screenshot:
+![Ping Failure](ping-failure.png)
+
+(Upload second screenshot showing the ping failure)
+
+🔹 Step 3: Enabled Network Interface
+Command Used:
+sudo ip link set enp0s3 up
+Action Taken:
+
+Activated the network interface manually.
+
+Screenshot:
+![Interface Enabled](interface-enabled.png)
+
+(Upload screenshot showing the command execution)
+
+🔹 Step 4: Verified Interface Status
+Command Used:
 ip link show
-### Screenshot
-![Network Interface](ip-link-show.png)
+Observation:
 
-Action Taken
+The interface enp0s3 status changed to:
 
-Restored interface using:
+state UP
 
-sudo ip link set <interface> up
+This confirmed that the network adapter was successfully activated.
 
-Result
+Screenshot:
+![Interface Up](interface-up.png)
 
-Network connectivity restored successfully.
+(Upload screenshot showing state UP)
 
+🔹 Step 5: Confirmed Internet Connectivity
+Command Used:
+ping -c 4 google.com
+Result:
+
+Successful replies received with:
+
+0% packet loss
+
+Valid RTT times
+
+This confirmed full network restoration.
+
+Screenshot:
+![Ping Success](ping-success.png)
+
+(Upload your final successful ping screenshot)
 ✅ 2. DNS Resolution Failure
 Problem
 
