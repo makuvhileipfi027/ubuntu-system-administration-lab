@@ -42,20 +42,24 @@ Screenshot:
 
 
 🔹 Step 3: Enabled Network Interface
+
 Command Used:
 sudo ip link set enp0s3 up
+
 Action Taken:
 
 Activated the network interface manually.
 
 Screenshot:
-![Interface Enabled](interface-enabled.png)
+![Interface Enabled](sudo-ip-link-set.png)
 
-(Upload screenshot showing the command execution)
+
 
 🔹 Step 4: Verified Interface Status
+
 Command Used:
 ip link show
+
 Observation:
 
 The interface enp0s3 status changed to:
@@ -65,13 +69,15 @@ state UP
 This confirmed that the network adapter was successfully activated.
 
 Screenshot:
-![Interface Up](interface-up.png)
+![Interface Up](ip-link-show.png)
 
-(Upload screenshot showing state UP)
+
 
 🔹 Step 5: Confirmed Internet Connectivity
+
 Command Used:
 ping -c 4 google.com
+
 Result:
 
 Successful replies received with:
@@ -83,9 +89,9 @@ Valid RTT times
 This confirmed full network restoration.
 
 Screenshot:
-![Ping Success](ping-success.png)
+![Ping Success](ping-sucessful.png)
 
-(Upload your final successful ping screenshot)
+
 ✅ 2. DNS Resolution Failure
 Problem
 
