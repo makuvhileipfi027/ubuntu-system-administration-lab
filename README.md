@@ -24,8 +24,10 @@ This indicated that the network adapter was not active, which explains why the s
 
 
 🔹 Step 2: Tested Internet Connectivity
+
 Command Used:
 ping -c 4 google.com
+
 Observation:
 
 The system returned:
@@ -35,9 +37,9 @@ Temporary failure in name resolution
 This confirmed that the system could not resolve domain names due to the inactive network interface.
 
 Screenshot:
-![Ping Failure](ping-failure.png)
+![Ping Failure](ping.png)
 
-(Upload second screenshot showing the ping failure)
+
 
 🔹 Step 3: Enabled Network Interface
 Command Used:
