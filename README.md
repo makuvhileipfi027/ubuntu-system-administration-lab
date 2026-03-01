@@ -136,25 +136,49 @@ Service became accessible and firewall rules updated successfully.
 ✅ 4. Frozen / Unresponsive Applications
 Problem
 
-Application stopped responding.
+LibreOffice became unresponsive and required manual process termination.
 
-Diagnosis
+Step 1: Launch the Application
 
-Identified running processes:
+Opened LibreOffice to simulate a running application.
 
-ps aux | grep <application_name>
+libreoffice
 
-Found the PID of the unresponsive process.
+This confirmed that the application process was active in the system.
 
-Action Taken
+Screenshot
+![LibreOffice Running](libreoffice-running.png)
 
-Terminated process:
 
-kill -9 <PID>
 
-Result
+Step 2: Identify the Running Process and PID
 
-System performance normalized and application restarted successfully.
+Used the following command to locate the process ID (PID):
+
+ps aux | grep libreoffice
+
+The output displayed the running process:
+
+/usr/lib/libreoffice/program/soffice.bin
+
+PID identified: 5466
+
+Screenshot
+![Process Identification](ps-aux.png)
+
+
+
+Step 3: Terminate the Frozen Process
+
+Forcefully terminated the process using its PID:
+
+sudo kill -9 5466
+
+This command sends a SIGKILL signal to immediately stop the process.
+
+Screenshot
+![Kill Process](kill--9.png)
+
 
 ✅ 5. SSH Login Failure Analysis
 Scenario
