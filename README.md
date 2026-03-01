@@ -147,7 +147,7 @@ libreoffice
 This confirmed that the application process was active in the system.
 
 Screenshot
-![LibreOffice Running](libreoffice-running.png)
+![LibreOffice Running](sucessful.png)
 
 
 
