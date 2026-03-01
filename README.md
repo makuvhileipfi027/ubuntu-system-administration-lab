@@ -5,9 +5,13 @@ This lab demonstrates my hands-on experience administering and troubleshooting U
 
 ✅ 1. Network Interface Connectivity Issue
 Problem
+
 🔹 Step 1: Identified Network Interface Status
+
 Command Used:
+
 ip link
+
 Observation:
 
 The network interface enp0s3 was in DOWN state.
