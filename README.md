@@ -92,26 +92,91 @@ Screenshot:
 ![Ping Success](ping-sucessful.png)
 
 
-✅ 2. DNS Resolution Failure
+✅ 2. Resolving DNS Resolution Failure (Network Troubleshooting)
 Problem
 
-System had network connectivity but could not browse websites.
+The system was unable to resolve domain names.
+Attempting to access websites such as google.com resulted in a Temporary failure in name resolution error, even though internet connectivity appeared to be active.
 
-Diagnosis
+Step 1: Verify DNS Configuration
 
-Checked DNS configuration file:
+Checked the DNS configuration file:
 
-cat /etc/resolv.conf
+sudo nano /etc/resolv.conf
 
-Identified incorrect or missing nameserver entry.
+The file showed:
 
-Action Taken
+nameserver 127.0.0.53
 
-Corrected DNS configuration in /etc/resolv.conf.
+This indicates the system is using the local stub resolver managed by systemd-resolved.
 
-Result
+This configuration relies on an upstream DNS server. If that upstream DNS fails, domain name resolution will not work.
 
-Domain name resolution restored and internet browsing worked.
+Screenshot
+
+![resolv](resolv.png)
+
+Step 2: Test Domain Name Resolution
+
+Tested DNS resolution using:
+
+ping -c 4 google.com
+
+The system returned the error:
+
+Temporary failure in name resolution
+
+This confirms that the system could not translate the domain name into an IP address.
+
+Screenshot
+
+![google](ping.png)
+
+Step 3: Verify Network Connectivity
+
+To confirm that the issue was DNS-related and not general network failure, tested connectivity using a direct IP address:
+
+ping -c 4 8.8.8.8
+
+The ping was successful with 0% packet loss.
+
+This confirms:
+
+Internet connectivity is working
+
+Network routing is functioning properly
+
+The issue is specifically related to DNS resolution
+
+Screenshot
+
+![network](ping-network.png)
+
+Step 4: Configure a Public DNS Server
+
+Manually set Google Public DNS (8.8.8.8) for the network interface:
+
+sudo resolvectl dns enp0s3 8.8.8.8
+
+This command configures the system to use Google’s DNS server instead of the failing default resolver.
+
+Screenshot
+
+![public dns](public-dns.png)
+
+Step 5: Verify DNS Resolution After Fix
+
+Retested domain name resolution:
+
+ping -c 4 google.com
+
+This time, the system successfully resolved google.com to its IP address and received replies with 0% packet loss.
+
+This confirms that DNS resolution was successfully restored.
+
+Screenshot
+
+![Resolution](dns-resolution.png)
 
 ✅ 3. Firewall Blocking Service (UFW)
 Problem
