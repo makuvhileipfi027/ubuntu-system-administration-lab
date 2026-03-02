@@ -312,20 +312,121 @@ Screenshot
 ![Kill Process](kill--9.png)
 
 
-✅ 5. SSH Login Failure Analysis
-Scenario
+✅ 5. SSH Login Failure Investigation & Log Analysis
 
-Simulated failed login attempts using incorrect credentials.
+Problem
 
-Diagnosis
+Unable to authenticate via SSH to remote host 192.168.18.45.
+The system returns:
 
-Reviewed authentication logs:
+Permission denied (publickey,password).
 
-/var/log/auth.log
+The objective was to:
 
-Result
+Attempt SSH connection
 
-Identified authentication failure messages and understood SSH security logging behavior.
+Observe authentication failure
+
+Investigate system logs
+
+Analyze failed login attempts
+
+Step 1: Attempt SSH Connection to Remote Host
+
+First, I attempted to connect to the remote machine using SSH:
+
+ssh ipfi@192.168.18.45
+
+During the first connection:
+
+The system displayed the host authenticity warning.
+
+I typed yes to add the host to known_hosts.
+
+Entered the password multiple times.
+
+Result:
+
+Authentication failed.
+
+Error displayed:
+Permission denied (publickey,password).
+
+This indicates:
+
+Either wrong credentials
+
+Or SSH authentication method mismatch
+
+Or invalid user configuration
+
+Screenshot
+
+
+
+Step 2: Check Authentication Logs for Failed Password Attempts
+
+To investigate the issue, I searched the authentication logs using:
+
+sudo grep -a "Failed password" /var/log/auth.log
+
+This command:
+
+Searches /var/log/auth.log
+
+Filters entries containing "Failed password"
+
+Displays SSH authentication failures
+
+The output showed:
+
+Failed password attempts for user ipfi
+
+Failed attempts from IP address 192.168.18.45
+
+Invalid user attempts (e.g., fakeuser)
+
+SSH daemon (sshd) log entries
+
+This confirms the login failures were recorded by the system.
+
+Screenshot
+
+(Upload screenshot showing grep results from auth.log)
+
+Step 3: Count and Analyze Failed Login Attempts by IP Address
+
+To analyze how many times each IP attempted to log in, I used:
+
+sudo grep -a "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c
+
+This command pipeline performs:
+
+grep → Filters failed password entries
+
+awk '{print $(NF-3)}' → Extracts IP addresses
+
+sort → Sorts IPs
+
+uniq -c → Counts occurrences per IP
+
+The output showed:
+
+3 attempts from 127.0.0.1
+
+2 attempts from 192.168.18.45
+
+This helps identify:
+
+Brute-force attempts
+
+Suspicious login activity
+
+Repeated authentication failures
+
+Screenshot
+
+(Upload screenshot showing IP count results)
 
 ✅ 6. High CPU Usage Simulation
 Scenario
