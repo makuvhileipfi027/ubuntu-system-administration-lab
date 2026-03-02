@@ -243,7 +243,7 @@ Rule updated (v6)
 
 Screenshot
 
-![Restore](restore.png)
+![Restore](Restore.png)
 
 Step 4: Verify Updated Firewall Status
 
