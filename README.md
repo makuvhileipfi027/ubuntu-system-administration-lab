@@ -179,24 +179,91 @@ Screenshot
 ![Resolution](dns-resolution.png)
 
 ✅ 3. Firewall Blocking Service (UFW)
+
+Managing Firewall Rules with UFW (Port 80)
+
 Problem
 
-Incoming traffic was blocked due to firewall rules.
+Demonstrate how to block and allow HTTP traffic (Port 80) using UFW (Uncomplicated Firewall), and verify the firewall rule changes.
 
-Diagnosis
+Step 1: Deny Port 80 (HTTP Traffic)
 
-Checked firewall status:
+First, I blocked incoming HTTP traffic on port 80 using the following command:
 
-sudo ufw status
-Action Taken
+sudo ufw deny 80/tcp
 
-Allowed required service port:
+This command:
+
+Adds a rule to deny incoming TCP traffic on port 80
+
+Applies to both IPv4 and IPv6
+
+The system confirmed:
+
+Rule added
+
+Rule added (v6)
+
+Screenshot
+![Deny](deny-port.png)
+
+Step 2: Verify Firewall Rule (Numbered Status)
+
+Next, I verified that the rule was successfully added by running:
+
+sudo ufw status numbered
+
+The output showed:
+
+Status: active
+
+80/tcp → DENY IN → Anywhere
+
+80/tcp (v6) → DENY IN → Anywhere (v6)
+
+This confirms that HTTP traffic was successfully blocked.
+
+Screenshot
+
+![Firewall](firewall-rule.png)
+
+Step 3: Allow Port 80 (Restore HTTP Access)
+
+After confirming the block, I restored access to port 80 using:
 
 sudo ufw allow 80/tcp
 
-Result
+This command updates the existing rule and allows incoming TCP traffic on port 80 for both IPv4 and IPv6.
 
-Service became accessible and firewall rules updated successfully.
+The system confirmed:
+
+Rule updated
+
+Rule updated (v6)
+
+Screenshot
+
+![Restore](restore.png)
+
+Step 4: Verify Updated Firewall Status
+
+Finally, I checked the firewall status again:
+
+sudo ufw status
+
+The output showed:
+
+Status: active
+
+80/tcp → ALLOW → Anywhere
+
+80/tcp (v6) → ALLOW → Anywhere (v6)
+
+This confirms that HTTP traffic on port 80 is now permitted.
+
+Screenshot
+
+![Status](verify-status.png)
 
 ✅ 4. Frozen / Unresponsive Applications
 Problem
