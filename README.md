@@ -362,7 +362,7 @@ Or invalid user configuration
 
 Screenshot
 
-
+![Attempt](Attempt.png)
 
 Step 2: Check Authentication Logs for Failed Password Attempts
 
@@ -390,9 +390,9 @@ SSH daemon (sshd) log entries
 
 This confirms the login failures were recorded by the system.
 
-Screenshot
+![Authentation](Check-Authentation-Logs.png)
 
-(Upload screenshot showing grep results from auth.log)
+
 
 Step 3: Count and Analyze Failed Login Attempts by IP Address
 
@@ -426,7 +426,7 @@ Repeated authentication failures
 
 Screenshot
 
-(Upload screenshot showing IP count results)
+![Analayze](Count-Analayze.png)
 
 ✅ 6. High CPU Usage Simulation
 Scenario
