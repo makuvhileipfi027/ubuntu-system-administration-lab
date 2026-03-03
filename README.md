@@ -542,7 +542,7 @@ This ensures the system relies strictly on physical memory.
 Screenshot 
 
  
-![Preparation](install-stress-test.png)
+![Preparation](intstall-stress-test.png)
 
 
 
