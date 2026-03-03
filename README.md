@@ -3,7 +3,7 @@
 
 This lab demonstrates my hands-on experience administering and troubleshooting Ubuntu Linux in a VirtualBox environment. The focus includes network configuration, DNS troubleshooting, firewall management, process monitoring, SSH authentication analysis, and system performance diagnostics.
 
-✅ 1. Network Interface Connectivity Issue
+1. Network Interface Connectivity Issue
 Problem
 
 🔹 Step 1: Identified Network Interface Status
@@ -92,7 +92,7 @@ Screenshot:
 ![Ping Success](ping-sucessful.png)
 
 
-✅ 2. Resolving DNS Resolution Failure (Network Troubleshooting)
+ 2. Resolving DNS Resolution Failure (Network Troubleshooting)
 Problem
 
 The system was unable to resolve domain names.
@@ -178,7 +178,7 @@ Screenshot
 
 ![Resolution](dns-resolution.png)
 
-✅ 3. Firewall Blocking Service (UFW)
+ 3. Firewall Blocking Service (UFW)
 
 Managing Firewall Rules with UFW (Port 80)
 
@@ -265,7 +265,7 @@ Screenshot
 
 ![Status](verify-status.png)
 
-✅ 4. Frozen / Unresponsive Applications
+ 4. Frozen / Unresponsive Applications
 Problem
 
 LibreOffice became unresponsive and required manual process termination.
@@ -312,7 +312,7 @@ Screenshot
 ![Kill Process](kill--9.png)
 
 
-✅ 5. SSH Login Failure Investigation & Log Analysis
+ 5. SSH Login Failure Investigation & Log Analysis
 
 Problem
 
@@ -428,13 +428,13 @@ Screenshot
 
 ![Analayze](Count-Analayze.png)
 
-✅ 6. High CPU Usage Simulation – Before & After Analysis
+ 6. High CPU Usage Simulation – Before & After Analysis
 
 Platform: Ubuntu (VirtualBox)
 Tool Used: stress-ng
 Monitoring Tool: htop
 
-🟢 Step 1 – Baseline System Performance (Before Stress Test)
+ Step 1 – Baseline System Performance (Before Stress Test)
 
 Before simulating high CPU usage, system performance was analyzed to establish a baseline.
 
@@ -458,7 +458,7 @@ This baseline confirms the system was in a healthy state prior to stress simulat
 
 ![Before](Before-stress-test.png)
 
-🔥 Step 2 – Execute CPU Stress Test
+Step 2 – Execute CPU Stress Test
 
 To simulate a real-world high CPU usage scenario, the following command was executed:
 
@@ -478,7 +478,7 @@ Screenshot
 ![Execute](Execute.png)
 
 
-🟢 Step 3 – Monitor System Under Load
+ Step 3 – Monitor System Under Load
 
 While the stress test was running, system performance was monitored using:
 
@@ -501,7 +501,7 @@ Screenshot
 
 
 
-🟢 Step 4 – Stress Test Completion
+ Step 4 – Stress Test Completion
 
 After the 60-second timeout, the stress test terminated automatically.
 
@@ -525,17 +525,95 @@ CPU stress simulation completed properly
 ![Completion](Stress-test-completion.png)
 
 
-✅ 7. Out-of-Memory (OOM) Event Analysis
-Scenario
+ 7. Out-of-Memory (OOM) Event Analysis
 
-Simulated memory exhaustion.
+ Step 1 – System Preparation
 
-Diagnosis
+The stress testing tool was verified and installed:
 
-Reviewed kernel logs:
+sudo apt update && sudo apt install stress-ng -y
 
-dmesg
+Swap memory was disabled to ensure maximum RAM pressure during testing:
 
-Result
+sudo swapoff -a
 
-Observed Linux OOM killer behavior and understood how the system terminates processes under memory pressure.
+This ensures the system relies strictly on physical memory.
+
+Screenshot 
+
+ 
+![Preparation](install-stress-test.png)
+
+
+
+Step 2 – Baseline Performance (Before Stress)
+
+Before initiating the stress test, system performance was analyzed using:
+
+htop
+Observed:
+
+CPU usage ~2–5%
+
+Load average normal (0.16 0.50 0.60)
+
+No stress processes running
+
+System stable
+
+screenshot
+ 
+![Before](before.png)
+
+Step 3 – Execute CPU & Memory Stress Test
+
+To simulate extreme load:
+
+stress-ng --vm 4 --vm-bytes 95% --vm-populate --vm-keep --timeout 1m
+
+This command:
+
+Launches 4 memory workers
+
+Consumes 95% of available RAM
+
+Generates heavy CPU usage
+
+Runs for 1 minute
+
+Screenshot
+ 
+![Execute](Execute-memory.png)
+
+Step 4 – Monitor During High Load
+
+While the stress test was running, system monitoring confirmed:
+
+CPU reached 100%
+
+Multiple stress-ng-vm processes active
+
+Load average increased above 4.0
+
+Memory usage near maximum
+
+Screenshot 
+
+ 
+![Monitor](monitor.png)
+
+
+Step 5 – Stress Test Completion
+
+After the timeout period, the system displayed:
+
+successful run completed
+passed: 4 vm (4)
+failed: 0
+metrics untrustworthy: 0
+
+This confirms the stress test executed successfully with no failures.
+
+ Screenshot 5 
+  
+![Completion](Execute-memory.png)
