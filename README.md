@@ -453,17 +453,10 @@ System operating smoothly and responsively
 
 This baseline confirms the system was in a healthy state prior to stress simulation.
 
-📸 Screenshot 1
+ Screenshot 
+ 
 
-👉 Insert screenshot showing:
-
-htop
-
-Low CPU usage (mostly green bars)
-
-No stress-ng processes
-
-Normal load average
+![Before](Before-stress-test.png)
 
 🔥 Step 2 – Execute CPU Stress Test
 
@@ -480,13 +473,10 @@ stress-ng → System stress testing tool
 
 This command generated maximum CPU load across all processor cores.
 
-📸 Screenshot 2
+Screenshot 
 
-👉 Insert screenshot showing:
+![Execute](Execute.png)
 
-stress-ng --cpu 0 --timeout 60s
-
-Command actively running (during execution)
 
 🟢 Step 3 – Monitor System Under Load
 
@@ -505,17 +495,11 @@ Higher number of running tasks
 
 This confirms successful simulation of CPU saturation.
 
-📸 Screenshot 3
+Screenshot 
 
-👉 Insert screenshot showing:
+![Monitor](Monitor-system.png)
 
-htop
 
-Red CPU bars at 100%
-
-stress-ng-cpu processes at the top
-
-High load average values
 
 🟢 Step 4 – Stress Test Completion
 
@@ -535,15 +519,11 @@ No failures occurred
 
 CPU stress simulation completed properly
 
-📸 Screenshot 4
+ Screenshot 
 
-👉 Insert screenshot showing:
+ 
+![Completion](Stress-test-completion.png)
 
-stress-ng: successful run completed
-
-passed: 2 cpu (2)
-
-failed: 0
 
 ✅ 7. Out-of-Memory (OOM) Event Analysis
 Scenario
