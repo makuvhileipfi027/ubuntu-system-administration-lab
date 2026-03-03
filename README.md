@@ -428,17 +428,122 @@ Screenshot
 
 ![Analayze](Count-Analayze.png)
 
-✅ 6. High CPU Usage Simulation
-Scenario
+✅ 6. High CPU Usage Simulation – Before & After Analysis
 
-Simulated heavy CPU load.
+Platform: Ubuntu (VirtualBox)
+Tool Used: stress-ng
+Monitoring Tool: htop
 
-Monitoring Tool Used
-top
+🟢 Step 1 – Baseline System Performance (Before Stress Test)
 
-Result
+Before simulating high CPU usage, system performance was analyzed to establish a baseline.
 
-Analyzed CPU utilization and identified high-resource processes.
+Monitoring was performed using:
+
+htop
+Observations (Baseline):
+
+CPU utilization was low (typically under 20%)
+
+Minimal active processes
+
+Normal load average values
+
+System operating smoothly and responsively
+
+This baseline confirms the system was in a healthy state prior to stress simulation.
+
+📸 Screenshot 1
+
+👉 Insert screenshot showing:
+
+htop
+
+Low CPU usage (mostly green bars)
+
+No stress-ng processes
+
+Normal load average
+
+🔥 Step 2 – Execute CPU Stress Test
+
+To simulate a real-world high CPU usage scenario, the following command was executed:
+
+stress-ng --cpu 0 --timeout 60s
+Command Breakdown:
+
+stress-ng → System stress testing tool
+
+--cpu 0 → Utilizes all available CPU cores
+
+--timeout 60s → Runs test for 60 seconds
+
+This command generated maximum CPU load across all processor cores.
+
+📸 Screenshot 2
+
+👉 Insert screenshot showing:
+
+stress-ng --cpu 0 --timeout 60s
+
+Command actively running (during execution)
+
+🟢 Step 3 – Monitor System Under Load
+
+While the stress test was running, system performance was monitored using:
+
+htop
+During Execution, the Following Was Observed:
+
+CPU usage reached 100% across all cores
+
+Multiple stress-ng-cpu processes running
+
+Increased load average
+
+Higher number of running tasks
+
+This confirms successful simulation of CPU saturation.
+
+📸 Screenshot 3
+
+👉 Insert screenshot showing:
+
+htop
+
+Red CPU bars at 100%
+
+stress-ng-cpu processes at the top
+
+High load average values
+
+🟢 Step 4 – Stress Test Completion
+
+After the 60-second timeout, the stress test terminated automatically.
+
+The terminal displayed the following completion summary:
+
+stress-ng: successful run completed
+passed: 2 cpu (2)
+failed: 0
+metrics untrustworthy: 0
+This Confirms:
+
+Stress test executed successfully
+
+No failures occurred
+
+CPU stress simulation completed properly
+
+📸 Screenshot 4
+
+👉 Insert screenshot showing:
+
+stress-ng: successful run completed
+
+passed: 2 cpu (2)
+
+failed: 0
 
 ✅ 7. Out-of-Memory (OOM) Event Analysis
 Scenario
